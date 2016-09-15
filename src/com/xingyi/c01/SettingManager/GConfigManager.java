@@ -7,6 +7,7 @@ import com.xingyi.c01.API.*;
 public class GConfigManager
 {
 	private static GConfigManager instance=new GConfigManager();
+	private FileConfiguration config;
 	public static GConfigManager getInstance()
 	{
 		return instance;
@@ -18,6 +19,8 @@ public class GConfigManager
 			GeneralPluginProvider.getInstance().saveDefaultConfig();
 			throw new UnableAccessGeneralConfigException("无法控制通用设置文件");
 		}
-		return YamlConfiguration.loadConfiguration(f);
+		FileConfiguration ff=YamlConfiguration.loadConfiguration(f);
+		config=ff;
+		return ff;
 	}
 }
