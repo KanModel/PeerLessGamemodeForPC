@@ -23,4 +23,20 @@ public class GConfigManager
 		config=ff;
 		return ff;
 	}
+	public void saveConfig()
+	{
+		try
+		{
+			config.save(new File(GeneralPluginProvider.getInstance().getDataFolder(), "config.yml"));
+		}
+		catch (IOException e)
+		{
+			GeneralPluginProvider.getInstance().saveDefaultConfig();
+		}
+	}
+	public void writeIn(String path,Object value)
+	{
+		config.set(path,value);
+		saveConfig();
+	}
 }
