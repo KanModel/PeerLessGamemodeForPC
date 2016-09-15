@@ -2,6 +2,7 @@ package com.xingyi.c01.SettingManager;
 import org.bukkit.configuration.file.*;
 import java.io.*;
 import com.xingyi.c01.PGException.*;
+import com.xingyi.c01.API.*;
 
 public class GConfigManager
 {
@@ -14,6 +15,7 @@ public class GConfigManager
 	{
 		if(!f.exists())
 		{
+			GeneralPluginProvider.getInstance().saveDefaultConfig();
 			throw new UnableAccessGeneralConfigException("无法控制通用设置文件");
 		}
 		return YamlConfiguration.loadConfiguration(f);
