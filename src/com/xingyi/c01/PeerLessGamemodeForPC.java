@@ -1,3 +1,5 @@
+package com.xingyi.c01;
+
 import java.util.*;
 import org.bukkit.plugin.java.*;
 import com.xingyi.c01.API.*;
