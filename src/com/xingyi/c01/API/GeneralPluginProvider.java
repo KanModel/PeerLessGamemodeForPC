@@ -27,10 +27,4 @@ public class GeneralPluginProvider
 	{
 		this.plugin.saveDefaultConfig();
 	}
-//	FileConfiguration reloadSetting(){
-//		return config = YamlConfiguration.loadConfiguration(configFile);
-//	}
-	public FileConfiguration reloadSetting(File file){
-		return YamlConfiguration.loadConfiguration(file);
-	}
 }
