@@ -7,9 +7,9 @@ import org.bukkit.command.CommandSender;
 /**
  * Created by kgdwhsk on 2016/9/19.
  */
-public class SpeakCostCommand implements CommandExecutor{
+public class MainCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         return false;
     }
 }

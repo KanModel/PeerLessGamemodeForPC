@@ -1,3 +1,9 @@
 name: PeerLessGamemodeForPC
 version: 1.0#Beta0001
 main: com.xingyi.c01.PeerLessGamemodeForPC
+commands:
+  plg:
+    usage: /plg 获取更多帮助
+    description: 获取更多帮助
+    permission-message: 你没有权限！
+    aliases: [p,pl]

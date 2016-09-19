@@ -1,8 +1,8 @@
 package com.xingyi.c01;
 
 import java.io.File;
-import java.util.*;
 
+import com.xingyi.c01.Features.Command.MainCommand;
 import com.xingyi.c01.Features.Listener.SpeakCost;
 import com.xingyi.c01.PGException.UnableAccessGeneralConfigException;
 import com.xingyi.c01.SettingManager.GConfigManager;
@@ -17,6 +17,7 @@ public class PeerLessGamemodeForPC extends JavaPlugin
 	public static FileConfiguration config;
 	public static ConsoleMessageManager cmm;
 	public static GConfigManager gConfigManager;
+	public static GeneralPluginProvider generalPluginProvider;
 
 	@Override
 	public void onEnable()
@@ -38,13 +39,16 @@ public class PeerLessGamemodeForPC extends JavaPlugin
 	public void setUpSettingManager(){
 		cmm = new ConsoleMessageManager();
 		cmm.setUp(ChatColor.GREEN);
+		generalPluginProvider = GeneralPluginProvider.getInstance();
+		generalPluginProvider.setUpPluginGetter(this);
 		gConfigManager = GConfigManager.getInstance();
-		gConfigManager.saveConfig();
 		try {
-			config = gConfigManager.loadGeneralConfig(new File("config.yml"));
+			gConfigManager.loadGeneralConfig(new File(getDataFolder(),"config.yml"));
+			config = gConfigManager.loadGeneralConfig(new File(getDataFolder(),"config.yml"));
 		}catch (Exception e){
 			e.printStackTrace();
 		}
+		gConfigManager.saveConfig();
 	}
 	public void setUpAPI()
 	{
@@ -52,11 +56,15 @@ public class PeerLessGamemodeForPC extends JavaPlugin
 		cmm.send(PLG + "Set up API succeed!");
 //		this.getServer().getConsoleSender().sendMessage(ChatColor.GREEN + PLG + "Set up API succeed!");
 	}
+	public void setUpCommand(){
+		this.getCommand("plg").setExecutor(new MainCommand());
+	}
 	public void setUpPlugin()
 	{
 		setUpSettingManager();
 		setUpAPI();
 		setUpListener();
+		setUpCommand();
 	}
 
 	public FileConfiguration getMyConfig() {
