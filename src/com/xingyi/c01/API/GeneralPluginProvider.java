@@ -5,26 +5,32 @@ import org.bukkit.configuration.file.*;
 
 public class GeneralPluginProvider
 {
-	private static GeneralPluginProvider instance=new GeneralPluginProvider();
-	private Plugin p;
+	private static GeneralPluginProvider instance = new GeneralPluginProvider();
+	private Plugin plugin;
 	public static GeneralPluginProvider getInstance()
 	{
 		return instance;
 	}
 	public void setUpPluginGetter(Plugin pl)
 	{
-		this.p=pl;
+		this.plugin = pl;
 	}
 	public File getDataFolder()
 	{
-		return this.p.getDataFolder();
+		return this.plugin.getDataFolder();
 	}
 	public FileConfiguration getConfig()
 	{
-		return this.p.getConfig();
+		return this.plugin.getConfig();
 	}
 	public void saveDefaultConfig()
 	{
-		this.p.saveDefaultConfig();
+		this.plugin.saveDefaultConfig();
+	}
+//	FileConfiguration reloadSetting(){
+//		return config = YamlConfiguration.loadConfiguration(configFile);
+//	}
+	public FileConfiguration reloadSetting(File file){
+		return YamlConfiguration.loadConfiguration(file);
 	}
 }
